@@ -17,24 +17,24 @@ public class HadoopMRTest {
         HadoopMR.MRMapper mapper = new HadoopMR.MRMapper();
         HadoopMR.MRReducer reducer = new HadoopMR.MRReducer();
 
-        MapReduceDriver<IntWritable, Text, Text, IntWritable, Text, IntWritable> mapr =
+        MapReduceDriver<IntWritable, Text, Text, IntWritable, Text, IntWritable> mapReduceDriver =
                 MapReduceDriver.newMapReduceDriver(mapper, reducer);
 
         /**
-         * Adding Input to the MapR
+         * Adding Input to the MapReduce
          */
-        mapr.addInput(new IntWritable(1), new Text("Ciccio"));
-        mapr.addInput(new IntWritable(1), new Text("Ciccio"));
-        mapr.addInput(new IntWritable(1), new Text("Ciccio"));
-        mapr.addInput(new IntWritable(1), new Text("Ciccio"));
+        mapReduceDriver.addInput(new IntWritable(1), new Text("Ciccio"));
+        mapReduceDriver.addInput(new IntWritable(1), new Text("Ciccio"));
+        mapReduceDriver.addInput(new IntWritable(1), new Text("Ciccio"));
+        mapReduceDriver.addInput(new IntWritable(1), new Text("Ciccio"));
 
         /**
          * Expected Output
          */
-        mapr.withOutput(new Text("Ciccio"), new IntWritable(4));
+        mapReduceDriver.withOutput(new Text("Ciccio"), new IntWritable(4));
 
         try {
-            mapr.runTest();
+            mapReduceDriver.runTest();
         } catch (IOException e) {
             fail(e.getMessage());
         }
