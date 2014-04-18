@@ -1,4 +1,4 @@
-package com.ciccio;
+package com.hadoop.simplemr;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -6,8 +6,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
 
 public class HadoopMR  {
 
@@ -16,6 +14,7 @@ public class HadoopMR  {
 
         @Override
         protected void map(IntWritable key, Text value, Context context) throws IOException, InterruptedException {
+
             /**
              * Simply writing the input as is to the reducer
              */
@@ -27,11 +26,10 @@ public class HadoopMR  {
 
         @Override
         protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+
             int sum = 0;
 
-            Iterator<IntWritable> iterator = values.iterator();
-            while(iterator.hasNext()) {
-                iterator.next();
+            for (IntWritable ignored : values) {
                 sum += 1;
             }
 
