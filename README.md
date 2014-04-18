@@ -1,4 +1,4 @@
 HadoopMR
 ========
 
-Example on how to test a mapreduce with MRUnit
+Example on how to test a MapReduce with MRUnit
